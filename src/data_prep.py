@@ -23,16 +23,17 @@ for i, row in df.iterrows():
             df.at[i, 'original_price'] = float(df.at[i, 'original_price'])
         except ValueError:
             df.at[i, 'original_price'] = 0.0
+
     # Add app id to id_list
-    split_url = row['url'].split("/")
-    try:
-        app_index = split_url.index('app')
-        id_list.append(split_url[app_index+1])
-    except:
-        print(split_url)
+    # split_url = row['url'].split("/")
+    # try:
+    #     app_index = split_url.index('app')
+    #     id_list.append(split_url[app_index+1])
+    # except:
+    #     print(split_url)
         #print(df.loc[[i]])
 
 # Create new column on Dataframe with all app id's
-df['app_id'] = id_list
+# df['app_id'] = id_list
 
 #print(df)

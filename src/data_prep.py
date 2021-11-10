@@ -53,7 +53,13 @@ for x in id_list:
     reviews.append(review_scraping.get_n_reviews(x,10))
     z +=1
     print(z)
+    if z == 10:
+        with open('reviews.txt', 'a') as f:
+            for item in reviews:
+                f.write("%s" % item)
+        reviews = []
+
+
+
+
     
-with open('reviews.txt', 'w') as f:
-    for item in reviews:
-        f.write("%s\n" % item)

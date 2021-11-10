@@ -1,4 +1,5 @@
 import requests
+import sys
 
 def get_reviews(appid, params={'json':1}):
         url = 'https://store.steampowered.com/appreviews/'
@@ -16,13 +17,15 @@ def get_n_reviews(appid, n=100):
             'review_type' : 'all',
             'purchase_type' : 'all'
             }
-
     while n > 0:
         params['cursor'] = cursor.encode()
         params['num_per_page'] = min(100, n)
         n -= 100
+        try:
+                response = get_reviews(appid, params)
+        except requests.exceptions.RequestException as e:
+                continue
 
-        response = get_reviews(appid, params)
         cursor = response['cursor']
         reviews += response['reviews']
 

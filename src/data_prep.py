@@ -33,6 +33,16 @@ for i, row in df.iterrows():
     except:
         bad_rows.append(i)
 
+    
+    if row['publisher'] is not nan:
+        string = row['publisher']
+        substring1 = string[0:int(len(string)/2)]
+        substring2 = string[int(len(string)/2)+1:]
+        if(substring1 == substring2):
+            df.at[i,'publisher'] = substring1
+    else:
+        df.at[i,'publisher'] = ""
+
 # Remove bad rows
 for index in bad_rows:
     df = df.drop(index)

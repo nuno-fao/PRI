@@ -10,9 +10,5 @@
 ##TODO
 
 ### Data cleaning
-- cortar bundles
-- normalizar texto
 - cortar publisher repetido
 - translate developer, publisher, tags, genre, language, game_details into numbers
-- tirar o dollasign
-- por discount price a null quando foi maior que original

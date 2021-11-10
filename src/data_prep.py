@@ -1,10 +1,11 @@
 from numpy import NaN, nan
 import pandas as pd
 from definitions import ROOT_DIR
+import review_scraping
 import tools
 
 # Import csv
-df = pd.read_csv(ROOT_DIR + '\\..\\files\\steam_games.csv')
+df = pd.read_csv(ROOT_DIR + '/steam_games.csv')
 
 # Remove discount
 df = df.drop('discount_price', axis=1)
@@ -44,3 +45,15 @@ df = df.reset_index(drop=True)
 df['app_id'] = id_list
 
 print(df)
+
+reviews = []
+
+z = 0
+for x in id_list:
+    reviews.append(review_scraping.get_n_reviews(x,10))
+    z +=1
+    print(z)
+    
+with open('reviews.txt', 'w') as f:
+    for item in reviews:
+        f.write("%s\n" % item)

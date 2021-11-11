@@ -1,8 +1,7 @@
 from numpy import NaN, nan
 import pandas as pd
 from definitions import ROOT_DIR
-import review_scraping
-import tools
+
 
 # Import csv
 df = pd.read_csv(ROOT_DIR + '/steam_games.csv')
@@ -44,22 +43,11 @@ df = df.reset_index(drop=True)
 # Create new column on Dataframe with all app id's
 df['app_id'] = id_list
 
+df['app_id'].to_json("temp.json")
+
 print(df)
 
-reviews = []
-
-z = 0
-for x in id_list:
-    reviews.append(review_scraping.get_n_reviews(x,10))
-    z +=1
-    print(z)
-    if z == 10:
-        with open('reviews.txt', 'a') as f:
-            for item in reviews:
-                f.write("%s" % item)
-        reviews = []
 
 
 
 
-    

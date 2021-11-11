@@ -1,10 +1,9 @@
 from numpy import NaN, nan
 import pandas as pd
 from definitions import ROOT_DIR
-import tools
 
 # Import csv
-df = pd.read_csv(ROOT_DIR + '\\..\\files\\steam_games.csv')
+df = pd.read_csv(ROOT_DIR + '/steam_games.csv')
 
 # Remove discount
 df = df.drop('discount_price', axis=1)
@@ -52,5 +51,7 @@ df = df.reset_index(drop=True)
 
 # Create new column on Dataframe with all app id's
 df['app_id'] = id_list
+
+df['app_id'].to_json("temp.json")
 
 print(df)

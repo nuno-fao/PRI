@@ -23,7 +23,14 @@ for i, row in df.iterrows():
         try:
             df.at[i, 'original_price'] = float(df.at[i, 'original_price'])
         except ValueError:
-            df.at[i, 'original_price'] = 0.0
+            if df.at[i, 'original_price'] == "Free to Play":
+                df.at[i, 'original_price'] = 0.0
+            else:
+                bad_rows.append(i)
+                continue
+    elif row['original_price'] == "":
+        bad_rows.append(i)
+        continue
 
     # Add app id to id_list
     split_url = row['url'].split("/")
@@ -32,6 +39,7 @@ for i, row in df.iterrows():
         id_list.append(split_url[app_index+1])
     except:
         bad_rows.append(i)
+        continue
 
     
     if row['publisher'] is not nan:
@@ -53,4 +61,4 @@ df = df.reset_index(drop=True)
 # Create new column on Dataframe with all app id's
 df['app_id'] = id_list
 
-print(df)
+df.to_csv(path_or_buf=ROOT_DIR + '\\..\\files\\steam_games_prep.csv')

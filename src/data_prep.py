@@ -19,6 +19,9 @@ for i, row in df.iterrows():
 
     # Convert free into 0 and clear dollar sign
     if row['original_price'] is not nan:
+        if row['original_price'] is None:
+            bad_rows.append(i)
+            continue
         df.at[i, 'original_price'] = row['original_price'].replace('$', '')
         try:
             df.at[i, 'original_price'] = float(df.at[i, 'original_price'])
@@ -28,9 +31,10 @@ for i, row in df.iterrows():
             else:
                 bad_rows.append(i)
                 continue
-    elif row['original_price'] == "":
+    else:
         bad_rows.append(i)
         continue
+    
 
     # Add app id to id_list
     split_url = row['url'].split("/")

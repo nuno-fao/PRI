@@ -21,6 +21,13 @@ run: venv/bin/activate
 #simple regex to ensure json file validity
 	sed -i 's/\]\[/,/g' reviews.json
 
+# analyse dataset and extract required json files
+	./venv/bin/python3 dataset_analysis.py
+
+#Make graphs based on json files acquired
+	./venv/bin/python3 data_visualization.py
+
+
 
 #cleanup
 clean:

@@ -3,7 +3,7 @@ import pandas as pd
 from definitions import ROOT_DIR
 
 # Import csv
-df = pd.read_csv(ROOT_DIR + '/steam_games.csv')
+df = pd.read_csv(ROOT_DIR + '\\..\\files\\steam_games.csv')
 
 # Remove discount
 df = df.drop('discount_price', axis=1)

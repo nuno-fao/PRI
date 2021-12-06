@@ -64,5 +64,5 @@ df = df.reset_index(drop=True)
 # Create new column on Dataframe with all app id's
 df['app_id'] = id_list
 df['app_id'].to_json("temp.json")
-df.to_csv(path_or_buf=ROOT_DIR + '\\..\\files\\steam_games_prep.csv')
+df.to_csv(path_or_buf=ROOT_DIR + '\\..\\files\\steam_games_prep.csv',index=False)
 

@@ -47,7 +47,7 @@ def get_n_reviews(appid, n=100):
     return reviews
 
 def str_to_list():
-    f = open('src\\steam_games_prep.json')
+    f = open('files\\games.json') 
     data = json.load(f)
     for entry in data:
         if entry["popular_tags"]:
@@ -67,7 +67,6 @@ def date_format():
     f = open('games.json')
     data = json.load(f)
 
-    newdata = []
     for entry in data:
         add = True
         if entry['release_date']:
@@ -75,7 +74,7 @@ def date_format():
 
             field = date.split(' ')
             if len(field) != 3:
-                add = False
+                print(field)
                 continue
 
             try:
@@ -85,12 +84,11 @@ def date_format():
                 print(field)
             
             entry['release_date'] = str(field[2]) + "-" + str(month) + "-" + re.sub("[^0-9]", "", str(field[1]))
-        if add:
-            newdata.append(entry)
     
     with open('games.json', 'w') as outfile:
-        json.dump(newdata, outfile)
+        json.dump(data, outfile)
     return
+
 
 str_to_list()
 date_format()

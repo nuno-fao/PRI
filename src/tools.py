@@ -1,5 +1,7 @@
 import requests
 import json
+import re
+MONTH_LIST = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 def get_true_discount(df):
     x = 0
     for _, row in df.iterrows():
@@ -61,4 +63,34 @@ def str_to_list():
         json.dump(data, outfile)
     return
 
+def date_format():
+    f = open('games.json')
+    data = json.load(f)
+
+    newdata = []
+    for entry in data:
+        add = True
+        if entry['release_date']:
+            date = entry['release_date']
+
+            field = date.split(' ')
+            if len(field) != 3:
+                add = False
+                continue
+
+            try:
+                month = MONTH_LIST.index(field[0]) + 1
+            except:
+                month = 7
+                print(field)
+            
+            entry['release_date'] = str(field[2]) + "-" + str(month) + "-" + re.sub("[^0-9]", "", str(field[1]))
+        if add:
+            newdata.append(entry)
+    
+    with open('games.json', 'w') as outfile:
+        json.dump(newdata, outfile)
+    return
+
 str_to_list()
+date_format()

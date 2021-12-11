@@ -33,7 +33,6 @@ for i, row in df.iterrows():
     else:
         bad_rows.append(i)
         continue
-    
 
     # Add app id to id_list
     split_url = row['url'].split("/")
@@ -65,4 +64,5 @@ df = df.reset_index(drop=True)
 df['app_id'] = id_list
 df['app_id'].to_json("temp.json")
 df.to_csv(path_or_buf=ROOT_DIR + '\\..\\files\\steam_games_prep.csv',index=False)
+df.to_json(path_or_buf=ROOT_DIR + '\\..\\files\\steam_games_prep.json',orient='records')
 

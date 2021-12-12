@@ -33,7 +33,12 @@
                     "class":"solr.LowerCaseFilterFactory"},
                 {
                     "class":"solr.ASCIIFoldingFilterFactory",
-                    "preserveOriginal":"true"}]},
+                    "preserveOriginal":"true"},
+                {
+                    "class":"solr.SynonymGraphFilterFactory",
+                    "expand":"true",
+                    "ignoreCase":"true",
+                    "synonyms":"synonyms.txt"}]},
             "queryAnalyzer":{
                 "tokenizer":{
                 "class":"solr.StandardTokenizerFactory"},
@@ -95,7 +100,7 @@
             "stored":true},
         {
             "name":"name",
-            "type":"text_general",
+            "type":"description",
             "indexed":true,
             "stored":true},
         {

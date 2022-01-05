@@ -125,5 +125,5 @@ def merge_reviews():
     return
 
      
-#initial_prep()
+initial_prep()
 merge_reviews()

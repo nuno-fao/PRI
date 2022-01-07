@@ -13,23 +13,60 @@
                 <button class="badge rounded-pill bg-primary" onclick="window.location='/search'"> Go Back </button>
             </div>
 
-            <div class="align-items-center text-center my-lg-5"> 
+            <div class="align-items-center text-center my-lg-5 mx-2"> 
                 <h2>Filters</h2>
-                <form action="#" method="POST">
+                <form action="#" method="GET">
+                    <input type="hidden" id="custId" name="text" value="{{querytext}}">
+                    <input type="hidden" id="custId" name="field" value="{{queryfield}}">
                 
                     <label for="customRange1" class="form-label">Minimum Price</label>
-                    <input type="range" class="form-range" id="customRange1" min="0" max="999" value="0" oninput="this.nextElementSibling.value = this.value">
+                    <input type="range" class="form-range" name="minprice" id="customRange1" min="0" max="999" value="0" oninput="this.nextElementSibling.value = this.value">
                     <output>0</output>
     
                     <br>
     
                     <label for="customRange2" class="form-label">Maximum Price</label>
-                    <input type="range" class="form-range" id="customRange2" min="0" max="999" value="999" oninput="this.nextElementSibling.value = this.value">
-                    <output>999</output>´
+                    <input type="range" class="form-range" name="maxprice" id="customRange2" min="0" max="999" value="999" oninput="this.nextElementSibling.value = this.value">
+                    <output>999</output>
+
+                    <br>
 
                     
+                    <label for="tags" class="form-label mx-2 mt-3">Tags</label>
+                    <input class="form-control" type="text" placeholder="RPG, Memes" name="tags">
+
+                    <label for="languages" class="form-label mx-2">Languages</label>
+                    <input class="form-control" type="text" placeholder="Portugues, English" name="languages">
+
+                    <label for="publisher" class="form-label mx-2">Publisher</label>
+                    <input class="form-control" type="text" placeholder="Ubisoft" name="publisher">
+
+                    <label for="developer" class="form-label mx-2">Developer</label>
+                    <input class="form-control" type="text" placeholder="CD Projekt Red" name="developer">
+
+                    <fieldset class="form-group">
+                        <legend class="mt-4">Sort By Price</legend>
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="pricesort" id="optionsRadios1" value="None" checked>
+                            Don't sort
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="pricesort" id="optionsRadios2" value="Asc">
+                            Ascending
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="pricesort" id="optionsRadios3" value="Desc">
+                            Descending
+                          </label>
+                        </div>
+                    </fieldset>
     
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Apply Filters</button>
+                    <button class="btn btn-secondary my-4" type="submit">Apply Filters</button>
                 </form>
             </div>
             

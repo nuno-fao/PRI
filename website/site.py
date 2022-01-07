@@ -17,18 +17,30 @@ def home():
 def search():
 	return render_template("search.html")
 
-@app.route("/results", methods=["GET", "POST"])
+@app.route("/results", methods=["GET"])
 def results():
-	if request.method=='GET':
-		text = request.args["text"]
-		field = request.args["field"]
-		
-		#query solr and pass the results to the results page with text and field retrieved from search page
-		#put the results in games variable, should be a list of games
+	text = request.args["text"]
+	field = request.args["field"]
 
-		games = []
+	maxprice = request.args.get("maxprice")
+	if maxprice==999: maxprice=None
+	minprice = request.args.get("minprice")
+	if minprice==0: minprice=None
 
-		return render_template("results.html", games=games, length=len(games))
+	tags = request.args.get("tags")
+	developer = request.args.get("developer")
+	publisher = request.args.get("publisher")
+	languages = request.args.get("tags")
+
+	sortby = request.args.get("pricesort")
+	if sortby == "None": sortby=None
+
+	#query solr and pass the results to the results page with text and field retrieved from search page
+	#put the results in games variable, should be a list of games
+
+	games = []
+
+	return render_template("results.html", games=games, length=len(games), querytext=text, queryfield=field)
 
 
 if __name__ == "__main__":

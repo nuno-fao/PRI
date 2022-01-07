@@ -6,25 +6,24 @@
         <title>Search page</title>
     </head>
     <body>
-        <div class ="py-5">
+        <div class ="py-5 mx-lg-5">
             <h1 class="text-center">Search Page!</h1>
             
-            <form class="d-flex align-items-center px-5" >
-                <input class="form-control me-sm-2" type="text" placeholder="Search">
-                <div class="form-group d-flex align-items-center px-5">
-                    <label for="exampleSelect1" class="form-label mt-4">Specify</label>
-                    <select class="form-select" id="field">
-                      <option selected="selected">Everywhere</option>
-                      <option>Name</option>
-                      <option>Tags</option>
-                      <option>Languages</option>
-                      <option>Name</option>
-                      <option>Description</option>
-                      <option>Publisher</option>
-                      <option>Developer</option>
-                      <option>Reviews</option>
-                      <option>Mature Content</option>
-                      <option>Price</option>
+            <form class="d-flex align-items-center px-5" action="/results" method="GET">
+                <input class="form-control" type="text" placeholder="Search" name="text">
+                <div class="form-group d-flex align-items-center px-5 my-lg-3">
+                    <label for="exampleSelect1" class="form-label mx-2">Field:</label>
+                    <select class="form-select" id="exampleSelect1" name="field">
+                        <option selected="selected">Everywhere</option>
+                        <option>Name</option>
+                            <option>Tags</option>
+                            <option>Languages</option>
+                        <option>Description</option>
+                            <option>Publisher</option>
+                            <option>Developer</option>
+                        <option>Reviews</option>
+                        <option>Mature Content</option>
+                            <option>Price</option>
                     </select>
                 </div>
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>

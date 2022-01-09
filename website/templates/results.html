@@ -22,16 +22,16 @@
         <input type="hidden" id="custId" name="field" value="{{queryfield}}">
 
         <label for="customRange1" class="form-label">Minimum Price</label>
-        <input type="range" class="form-range" name="minprice" id="customRange1" min="0" max="999" value="0"
+        <input type="range" class="form-range" name="minprice" id="customRange1" min="0" max="100" value="0"
           oninput="this.nextElementSibling.value = this.value">
         <output>0</output>
 
         <br>
 
         <label for="customRange2" class="form-label">Maximum Price</label>
-        <input type="range" class="form-range" name="maxprice" id="customRange2" min="0" max="999" value="999"
+        <input type="range" class="form-range" name="maxprice" id="customRange2" min="0" max="100" value="100"
           oninput="this.nextElementSibling.value = this.value">
-        <output>999</output>
+        <output>100</output>
 
         <br>
 
@@ -58,13 +58,13 @@
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="pricesort" id="optionsRadios2" value="Asc">
+              <input type="radio" class="form-check-input" name="pricesort" id="optionsRadios2" value="asc">
               Ascending
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="pricesort" id="optionsRadios3" value="Desc">
+              <input type="radio" class="form-check-input" name="pricesort" id="optionsRadios3" value="desc">
               Descending
             </label>
           </div>

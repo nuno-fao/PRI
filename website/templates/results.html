@@ -84,13 +84,72 @@
       {% for n in games %}
       <a href="#" class="list-group-item list-group-item-action flex-column align-items-start my-lg-3">
         <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1"><b class="text-primary">Name:</b> {{n['name'][0]}} &nbsp; &nbsp; &nbsp; &nbsp;{{n['url'][0]}}</h5>
-          <small> <b class="text-primary">Released:</b> {{n['release_date'][0]}} &nbsp; <b class="text-primary">Reviews:</b> {{n['all_reviews'][0]}}% &nbsp; <b class="text-primary">Price:</b> {{n['original_price'][0]}}</small>
-        </div>
-        <p class="mb-1"><b class="text-primary">Publisher:</b> {{n['publisher'][0]}} &nbsp; <b class="text-primary">Developer:</b> {{n['developer'][0]}}
-          <p class="mb-1"><b class="text-primary">Tags:</b> {{n['popular_tags']}}
-        </p>
-        <small><b class="text-primary">Description snippet:</b> {{n['desc_snippet']}}</small>
+                        <h5 class="mb-1"><b class="text-primary">Name:</b> {{n['name'][0]}} &nbsp; &nbsp; &nbsp;
+                            &nbsp;{{n['url'][0]}}</h5>
+                        <small> <b class="text-primary">Released:</b> 
+                            {%if n.get('release_date') != None %}
+                            {{n['release_date'][0]}}
+                            {% else %}
+                            None
+                            {% endif %}
+                            &nbsp; 
+                            <b class="text-primary">Score:</b> 
+                            {%if n.get('all_reviews') != None %}
+                            {{n['all_reviews'][0]}}% 
+                            {% else %}
+                            None
+                            {% endif %}
+                            &nbsp; 
+                            <b class="text-primary">Price:</b> 
+                            {%if n.get('original_price') != None %}
+                            {{n['original_price'][0]}}
+                            {% else %}
+                            ?
+                            {% endif %}
+                        </small>
+                    </div>
+                    <p class="mb-1"><b class="text-primary">Publisher:</b> 
+                        {%if n.get('publisher') != None %}
+                        {% for pub in n['publisher']%}
+                        {%if loop.index == 1%}
+                        {{pub}}
+                        {%else%}
+                        ||&nbsp;{{pub}}&nbsp; 
+                        {%endif%}
+                        {% endfor%}
+                        {% else %}
+                        ?
+                        {% endif %}
+                        &nbsp; 
+                        <b class="text-primary">Developer:</b> 
+                        {%if n.get('developer') != None %}
+                        {% for dev in n['developer']%}
+                        {%if loop.index == 1%}
+                        {{dev}}
+                        {%else%}
+                        ||&nbsp;{{dev}}&nbsp; 
+                        {%endif%}
+                        {% endfor%}
+                        {% else %}
+                        ?
+                        {% endif %}
+                    </p>
+                    <p class="mb-1">
+                        <b class="text-primary">Tags:</b> 
+                        {%if n.get('popular_tags') != None %}
+                        {{n['popular_tags']}}
+                        {% else %}
+                        None
+                        {% endif %}
+                    </p>
+                    <small>
+                        <b class="text-primary">Description snippet:</b> 
+                        {%if n.get('desc_snippet') != None %}
+                        {{n['desc_snippet']}}
+                        {% else %}
+                        No description snippet provided
+                        {% endif %}
+                    </small>
       </a>
       {% endfor %}
     </div>

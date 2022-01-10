@@ -24,15 +24,70 @@
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1"><b class="text-primary">Name:</b> {{target['name'][0]}} &nbsp; &nbsp; &nbsp;
                             &nbsp;{{target['url'][0]}}</h5>
-                        <small> <b class="text-primary">Released:</b> {{target['release_date'][0]}} &nbsp; <b
-                                class="text-primary">Reviews:</b> {{target['all_reviews'][0]}}% &nbsp; <b
-                                class="text-primary">Price:</b> {{target['original_price'][0]}}</small>
+                        <small> <b class="text-primary">Released:</b> 
+                            {%if target.get('release_date') != None %}
+                            {{target['release_date'][0]}}
+                            {% else %}
+                            None
+                            {% endif %}
+                            &nbsp; 
+                            <b class="text-primary">Score:</b> 
+                            {%if target.get('all_reviews') != None %}
+                            {{target['all_reviews'][0]}}% 
+                            {% else %}
+                            None
+                            {% endif %}
+                            &nbsp; 
+                            <b class="text-primary">Price:</b> 
+                            {%if target.get('original_price') != None %}
+                            {{target['original_price'][0]}}
+                            {% else %}
+                            ?
+                            {% endif %}
+                        </small>
                     </div>
-                    <p class="mb-1"><b class="text-primary">Publisher:</b> {{target['publisher'][0]}} &nbsp; <b
-                            class="text-primary">Developer:</b> {{target['developer'][0]}}
-                    <p class="mb-1"><b class="text-primary">Tags:</b> {{target['popular_tags']}}
+                    <p class="mb-1"><b class="text-primary">Publisher:</b> 
+                        {%if target.get('publisher') != None %}
+                        {% for pub in target['publisher']%}
+                        {%if loop.index == 1%}
+                        {{pub}}
+                        {%else%}
+                        ||&nbsp;{{pub}}&nbsp; 
+                        {%endif%}
+                        {% endfor%}
+                        {% else %}
+                        ?
+                        {% endif %}
+                        &nbsp; 
+                        <b class="text-primary">Developer:</b> 
+                        {%if target.get('developer') != None %}
+                        {% for dev in target['developer']%}
+                        {%if loop.index == 1%}
+                        {{dev}}
+                        {%else%}
+                        ||&nbsp;{{dev}}&nbsp; 
+                        {%endif%}
+                        {% endfor%}
+                        {% else %}
+                        ?
+                        {% endif %}
                     </p>
-                    <small><b class="text-primary">Description snippet:</b> {{target['desc_snippet']}}</small>
+                    <p class="mb-1">
+                        <b class="text-primary">Tags:</b> 
+                        {%if target.get('popular_tags') != None %}
+                        {{target['popular_tags']}}
+                        {% else %}
+                        None
+                        {% endif %}
+                    </p>
+                    <small>
+                        <b class="text-primary">Description snippet:</b> 
+                        {%if target.get('desc_snippet') != None %}
+                        {{target['desc_snippet']}}
+                        {% else %}
+                        No description snippet provided
+                        {% endif %}
+                    </small>
                 </div>
             </div>
         </div>
@@ -44,15 +99,21 @@
                 </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                data-bs-parent="#accordionExample" >
+                data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <p class="mb-1"><b class="text-primary">Full Description:</b> {{target['game_description']}}
-                    </p>
-                    <p class="mb-1"><b class="text-primary">Mature Content:</b> 
-                        {%if target.get('mature_content') != None %}
-                            {{target['mature_content'][0]}}
+                    <p class="mb-1"><b class="text-primary">Full Description:</b>
+                        {%if target.get('game_description') != None %}
+                        {{target['game_description']}}
                         {%else%}
-                            None
+                        None
+                        {%endif%}
+
+                    </p>
+                    <p class="mb-1"><b class="text-primary">Mature Content:</b>
+                        {%if target.get('mature_content') != None %}
+                        {{target['mature_content'][0]}}
+                        {%else%}
+                        None
                         {%endif%}
                     </p>
                 </div>
@@ -68,20 +129,20 @@
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <p class="mb-1"><b class="text-primary">Min Requirements:</b> 
+                    <p class="mb-1"><b class="text-primary">Min Requirements:</b>
                         {%if target.get('minimum_requirements') != None %}
-                            {{target['minimum_requirements'][0]}}</p>
-                        {%else%}
-                            None
-                        {%endif%}
+                        {{target['minimum_requirements'][0]}}</p>
+                    {%else%}
+                    None
+                    {%endif%}
                     </p>
                     <p class="mb-1"><b class="text-primary">Recommended Requirements:</b>
                         {%if target.get('reccomended_requirements') != None %}
-                            {{target['reccomended_requirements'][0]}}</p>
-                        {%else%}
-                            None
-                        {%endif%}
-                        
+                        {{target['reccomended_requirements'][0]}}</p>
+                    {%else%}
+                    None
+                    {%endif%}
+
                 </div>
             </div>
         </div>
@@ -95,9 +156,18 @@
             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
+                    {%if target.get('reviews') != None%}
+
                     {% for review in target['reviews']%}
-                    <p class="mb-1"><b class="text-primary">Review:</b> {{ review }} </p>
+                    <p class="mb-1"><b class="text-primary">Review {{loop.index}}:</b> {{ review }} </p>
                     {% endfor%}
+
+                    {%else%}
+
+                    <p class="mb-1"><b class="text-primary">This game has no reviews</b></p>
+
+                    {%endif%}
+
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import requestAPI
 from requestAPI import RequestAPI
 import json
 import solrFunctions
+from googletrans import Translator
 
 app = Flask(__name__)
 
@@ -36,6 +37,11 @@ def game(id):
 def results():
 	text = request.args["text"]
 	field = int(request.args["field"])
+
+	translator = Translator()
+	result = translator.translate(text, dest='en')
+	
+	text = result.text
 
 	maxprice = request.args.get("maxprice")
 	minprice = request.args.get("minprice")

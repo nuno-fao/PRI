@@ -82,10 +82,10 @@
 
     <div class="list-group">
       {% for n in games %}
-      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start my-lg-3">
+      <a href="/game_{{n['app_id'][0]}}" method="GET" target="_blank" class="list-group-item list-group-item-action flex-column align-items-start my-lg-3">
         <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1"><b class="text-primary">Name:</b> {{n['name'][0]}} &nbsp; &nbsp; &nbsp;
-                            &nbsp;{{n['url'][0]}}</h5>
+                            &nbsp; {{n['url'][0]}}</h5>
                         <small> <b class="text-primary">Released:</b> 
                             {%if n.get('release_date') != None %}
                             {{n['release_date'][0]}}

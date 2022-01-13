@@ -16,7 +16,6 @@ def buildString(field, input, tags, minPrice, maxPrice, languages, publisher, de
     res = res + addDeveloperFilter(developer)
     res = res + addNsfwFilter(hideNsfw)
     
-    
     if sort == None :
         return (addSearchField(field, input), {'fq':res, 'sort':"all_reviews desc"})
     else:
@@ -102,18 +101,19 @@ def addNsfwFilter(hideNsfw):
     return res
 
 
-
 def addPrice(minPrice, maxPrice):
     res = ""
     return "original_price:["+ str(minPrice) + " TO " + str(maxPrice) + "]"
 
 
 def getGame(id):
-    return solr.search('app_id:'+str(id))
+    return "app_id:"+str(id)
 
 
 
-# solr = pysolr.Solr('http://localhost:8983/solr/steam_test', always_commit=True)
+# solr = pysolr.Solr('http://localhost:8983/solr/steam', always_commit=True)
+# print(solr.search("app_id:" + "\""+ str(318130) + "\""))
+
 # # solr.ping()
 # # print(addTagsFilter(""))
 # res = buildString(0, "Doom","",0, 999,"", "", "", "asc")

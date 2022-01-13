@@ -22,7 +22,7 @@
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1"><b class="text-primary">Name:</b> {{target['name'][0]}} &nbsp; &nbsp; &nbsp;
+                        <h5 class="mb-1"><b class="text-primary">Name:</b> {{target['name']}} &nbsp; &nbsp; &nbsp;
                             &nbsp;<a href="{{target['url'][0]}}" target="_blank">{{target['url'][0]}}</a></h5>
                         <small> <b class="text-primary">Released:</b> 
                             {%if target.get('release_date') != None %}

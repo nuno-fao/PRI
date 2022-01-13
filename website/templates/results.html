@@ -17,7 +17,7 @@
 
     <div class="align-items-center text-center my-lg-5 mx-2">
       <h2>Filters</h2>
-      <form action="#" method="GET">
+      <form action="#" autocomplete="off" method="GET">
         <input type="hidden" id="custId" name="text" value="{{querytext}}">
         <input type="hidden" id="custId" name="field" value="{{queryfield}}">
 
@@ -35,12 +35,14 @@
 
         <br>
 
-
-        <label for="tags" class="form-label mx-2 mt-3">Tags</label>
-        <input class="form-control" type="text" placeholder="RPG, Memes" name="tags">
+        <div class="autocomplete">
+          <label for="tags" class="form-label mx-2 mt-3">Tags</label>
+          <input class="form-control" type="text" placeholder="RPGs" name="tags" id="tags">
+        </div>
+        
 
         <label for="languages" class="form-label mx-2">Languages</label>
-        <input class="form-control" type="text" placeholder="Portugues, English" name="languages">
+        <input class="form-control" type="text" placeholder="Portuguese" name="languages">
 
         <label for="publisher" class="form-label mx-2">Publisher</label>
         <input class="form-control" type="text" placeholder="Ubisoft" name="publisher">
@@ -157,6 +159,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
+  <script src="{{ url_for('static',filename='js/predictive.js') }}"></script>
+  <script>
+    autocomplete(document.getElementById("tags"), steam_tags);
+  </script> 
 </body>
 
 </html>

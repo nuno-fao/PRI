@@ -17,9 +17,9 @@ def buildString(field, input, tags, minPrice, maxPrice, languages, publisher, de
     res = res + addNsfwFilter(hideNsfw)
     
     if sort == None :
-        return (addSearchField(field, input), {'fq':res, 'sort':"all_reviews desc"})
+        return (addSearchField(field, input), {'fq':res, 'sort':"release_date desc, all_reviews desc"})
     else:
-        return (addSearchField(field, input), {'fq':res, 'sort':"original_price " + sort + " , all_reviews desc"})
+        return (addSearchField(field, input), {'fq':res, 'sort':"release_date desc, original_price " + sort + " , all_reviews desc"})
 
 
 def addSearchField(field, input):

@@ -84,7 +84,7 @@
     {{reset_date()}}
     {% if length > 0 %}
       {% if sort %}
-      {{ update_last_date(games[0]['release_date'][0])}}
+      {{ update_last_date(games['release_date'])}}
       {%endif%}
       <div class="list-group">
         {% for n in games %}

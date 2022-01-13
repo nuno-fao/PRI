@@ -11,7 +11,7 @@ app.secret_key = "key_secreta_do_site_de_pri"
 
 # Uncomment if solr is opened
 request_api = RequestAPI()
-request_api.open(url='http://localhost:8983/solr/steam_test')
+request_api.open(url='http://localhost:8983/solr/steam')
 
 
 @app.route("/")  # this sets the route to this page
@@ -37,8 +37,10 @@ def game(id):
 def results():
 	text = request.args["text"]
 	field = int(request.args["field"])
+	
+	hideNsfw = False if request.args.get("nsfw") == None else True
 
-	translator = Translator()
+	translator = Translator(service_urls=['translate.googleapis.com'])
 	result = translator.translate(text, dest='en')
 	
 	text = result.text
@@ -54,8 +56,8 @@ def results():
 	sortby = request.args.get("pricesort")
 	if sortby == "None": sortby=None
 	
-	# print(solrFunctions.buildString(field, text,tags,minprice, maxprice,languages, publisher, developer, sortby))
-	query = solrFunctions.buildString(field, text,tags,minprice, maxprice,languages, publisher, developer, sortby)
+	print(solrFunctions.buildString(field, text,tags,minprice, maxprice,languages, publisher, developer, sortby, hideNsfw))
+	query = solrFunctions.buildString(field, text,tags,minprice, maxprice,languages, publisher, developer, sortby, hideNsfw)
 	games = request_api.solr.search(query[0], **query[1])
 
 	#query solr and pass the results to the results page with text and field retrieved from search page

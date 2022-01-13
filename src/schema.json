@@ -12,7 +12,10 @@
               "tokenizer":{
                 "class":"solr.StandardTokenizerFactory"},
               "filters":[{
-                  "class":"solr.LowerCaseFilterFactory"}]}
+                  "class":"solr.LowerCaseFilterFactory"}, 
+                  
+                {   "class":"solr.ManagedSynonymFilterFactory", 
+                    "managed":"english"}]}
                 },
 
         {
@@ -33,12 +36,7 @@
                     "class":"solr.LowerCaseFilterFactory"},
                 {
                     "class":"solr.ASCIIFoldingFilterFactory",
-                    "preserveOriginal":"true"},
-                {
-                    "class":"solr.SynonymGraphFilterFactory",
-                    "expand":"true",
-                    "ignoreCase":"true",
-                    "synonyms":"synonyms.txt"}]},
+                    "preserveOriginal":"true"}]},
             "queryAnalyzer":{
                 "tokenizer":{
                 "class":"solr.StandardTokenizerFactory"},
@@ -52,6 +50,9 @@
                     "class":"solr.PorterStemFilterFactory"},
                 {
                     "class":"solr.LowerCaseFilterFactory"},
+
+                {   "class":"solr.ManagedSynonymFilterFactory", 
+                        "managed":"english"},
                 {
                     "class":"solr.ASCIIFoldingFilterFactory",
                     "preserveOriginal":"true"}]}}

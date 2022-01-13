@@ -1,7 +1,7 @@
 import pysolr
 
 
-def buildString(field, input, tags, minPrice, maxPrice, languages, publisher, developer, sort):
+def buildString(field, input, tags, minPrice, maxPrice, languages, publisher, developer, sort, hideNsfw):
     # Example: **{'fq':'desc_snippet:dlc', 'sort':'original_price asc'}
     if minPrice == None:
         minPrice = 0
@@ -14,7 +14,9 @@ def buildString(field, input, tags, minPrice, maxPrice, languages, publisher, de
     res = res + addLanguagesFilter(languages)
     res = res + addPublisherFilter(publisher)
     res = res + addDeveloperFilter(developer)
-
+    res = res + addNsfwFilter(hideNsfw)
+    
+    
     if sort == None :
         return (addSearchField(field, input), {'fq':res, 'sort':"all_reviews desc"})
     else:
@@ -88,6 +90,15 @@ def addDeveloperFilter(developer):
         res = res + "developer:"+ "\""+ x + "\""+ " AND "
     else:
         res = res + "developer:"+ "\""+ developerList[-1]+ "\""
+    return res
+
+
+def addNsfwFilter(hideNsfw):
+    res = ""
+    if not hideNsfw :
+        return ""
+    res = res + " AND "
+    res = res + "-mature_content:\"nsfw\" AND -popular_tags:\"nsfw\"" 
     return res
 
 

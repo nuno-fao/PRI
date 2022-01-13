@@ -24,21 +24,21 @@
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1"><b class="text-primary">Name:</b> {{target['name']}} &nbsp; &nbsp; &nbsp;
                             &nbsp;<a href="{{target['url'][0]}}" target="_blank">{{target['url'][0]}}</a></h5>
-                        <small> <b class="text-primary">Released:</b> 
+                        <small> <b class="text-primary">Released:</b>
                             {%if target.get('release_date') != None %}
                             {{target['release_date'][0]}}
                             {% else %}
                             None
                             {% endif %}
-                            &nbsp; 
-                            <b class="text-primary">Score:</b> 
+                            &nbsp;
+                            <b class="text-primary">Score:</b>
                             {%if target.get('all_reviews') != None %}
-                            {{target['all_reviews'][0]}}% 
+                            {{target['all_reviews'][0]}}%
                             {% else %}
                             None
                             {% endif %}
-                            &nbsp; 
-                            <b class="text-primary">Price:</b> 
+                            &nbsp;
+                            <b class="text-primary">Price:</b>
                             {%if target.get('original_price') != None %}
                             {{target['original_price'][0]}}
                             {% else %}
@@ -46,26 +46,26 @@
                             {% endif %}
                         </small>
                     </div>
-                    <p class="mb-1"><b class="text-primary">Publisher:</b> 
+                    <p class="mb-1"><b class="text-primary">Publisher:</b>
                         {%if target.get('publisher') != None %}
                         {% for pub in target['publisher']%}
                         {%if loop.index == 1%}
                         {{pub}}
                         {%else%}
-                        ||&nbsp;{{pub}}&nbsp; 
+                        ||&nbsp;{{pub}}&nbsp;
                         {%endif%}
                         {% endfor%}
                         {% else %}
                         ?
                         {% endif %}
-                        &nbsp; 
-                        <b class="text-primary">Developer:</b> 
+                        &nbsp;
+                        <b class="text-primary">Developer:</b>
                         {%if target.get('developer') != None %}
                         {% for dev in target['developer']%}
                         {%if loop.index == 1%}
                         {{dev}}
                         {%else%}
-                        ||&nbsp;{{dev}}&nbsp; 
+                        ||&nbsp;{{dev}}&nbsp;
                         {%endif%}
                         {% endfor%}
                         {% else %}
@@ -73,7 +73,7 @@
                         {% endif %}
                     </p>
                     <p class="mb-1">
-                        <b class="text-primary">Tags:</b> 
+                        <b class="text-primary">Tags:</b>
                         {%if target.get('popular_tags') != None %}
                         {{target['popular_tags']}}
                         {% else %}
@@ -81,7 +81,7 @@
                         {% endif %}
                     </p>
                     <small>
-                        <b class="text-primary">Description snippet:</b> 
+                        <b class="text-primary">Description snippet:</b>
                         {%if target.get('desc_snippet') != None %}
                         {{target['desc_snippet']}}
                         {% else %}

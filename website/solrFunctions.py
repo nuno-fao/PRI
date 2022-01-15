@@ -34,9 +34,9 @@ def addSearchField(field, input):
         res = "name:" + "\""+ input + "\"~1" + " OR " + "game_description:" + "\""+ input + "\"~1"
     elif field == 3:
         res = "reviews:" + "\""+ input + "\"~3"
+    # elif field == 4:
+    #     res = "mature_content:" + "\""+ input + "\"~1"
     elif field == 4:
-        res = "mature_content:" + "\""+ input + "\"~1"
-    elif field == 5:
         res = "name:" + "\""+ input + "\"~1" + " OR " + "game_description:" + "\""+ input + "\"~1" + " OR " + "reviews:" + "\""+ input + "\"~1"
 
     return res    

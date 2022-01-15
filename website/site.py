@@ -53,12 +53,13 @@ def results():
 	languages = request.args.get("languages")
 
 	sortby = request.args.get("pricesort")
+	sort = False
 	if sortby == "None": sortby=None
-	
-	sort = sortby == None
+	elif sortby == 'date': sort = True
 	# print(solrFunctions.buildString(field, text,tags,minprice, maxprice,languages, publisher, developer, sortby, hideNsfw))
 	query = solrFunctions.buildString(field, text,tags,minprice, maxprice,languages, publisher, developer, sortby, hideNsfw)
 	games = request_api.solr.search(query[0], **query[1])
+	games = games.docs
 
 	#query solr and pass the results to the results page with text and field retrieved from search page
 	#put the results in games variable, should be a list of games

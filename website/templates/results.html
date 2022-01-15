@@ -51,23 +51,29 @@
         <input class="form-control" type="text" placeholder="CD Projekt Red" name="developer">
 
         <fieldset class="form-group">
-          <legend class="mt-4">Sort By Price</legend>
+          <legend class="mt-4">Sort</legend>
           <div class="form-check">
             <label class="form-check-label">
               <input type="radio" class="form-check-input" name="pricesort" id="optionsRadios1" value="None" checked>
-              Don't sort
+              Default
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
               <input type="radio" class="form-check-input" name="pricesort" id="optionsRadios2" value="asc">
-              Ascending
+              Ascending Price
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
               <input type="radio" class="form-check-input" name="pricesort" id="optionsRadios3" value="desc">
-              Descending
+              Descending Price
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="pricesort" id="optionsRadios4" value="date">
+              Most Recent
             </label>
           </div>
         </fieldset>
@@ -84,7 +90,7 @@
     {{reset_date()}}
     {% if length > 0 %}
       {% if sort %}
-      {{ update_last_date(games['release_date'])}}
+      {{ update_last_date(games[0]['release_date'][0])}}
       {%endif%}
       <div class="list-group">
         {% for n in games %}
